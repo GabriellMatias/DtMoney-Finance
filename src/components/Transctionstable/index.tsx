@@ -1,15 +1,16 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { api } from "../../services/api";
+import { TransactionsContext } from "../../TrasnsactionContext";
 import { Container } from "./style";
 
-export function TransactionTable(){
 
-  useEffect(()=>{
-    api.get('transactions')
-    .then(response=> console.log(response.data))
-  },[])
 
-  return(
+export function TransactionTable() {
+  
+  const {transaction} = useContext(TransactionsContext)
+  
+
+  return (
     <Container>
       <table>
         <thead>
@@ -21,20 +22,33 @@ export function TransactionTable(){
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Blasldkjasldk</td>
-            <td className="deposity">R$12,00</td>
-            <td>developer</td>
-            <td>dateee</td>
-          </tr>
-          <tr>
-            <td>Blasldkjasldk</td>
-            <td className="withdrawal">-R$120,00</td>
-            <td>developer</td>
-            <td>dateee</td>
-          </tr>
+          {transaction.map((transaction) => (
+            <tr key={transaction.id}>
+              <td>{transaction.title}</td>
+
+              <td className={transaction.type}>
+                {
+                  /* blibioteca pra formatar o tipo de moeda que esta sendo usada
+                  BRL*/
+                  new Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(transaction.amount)
+                }
+              </td>
+
+              <td>{transaction.category}</td>
+              <td>
+              {
+                  new Intl.DateTimeFormat("pt-BR").format(
+                    new Date(transaction.createdAt)
+                  )
+                }
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </Container>
-  )
+  );
 }

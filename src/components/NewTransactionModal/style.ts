@@ -22,6 +22,7 @@ export const Container = styled.form`
     &:placeholder {
       color: var(--text);
     }
+    /* todos inputs que tem um input em cima*/
     & + input {
       margin-top: 1rem;
     }
