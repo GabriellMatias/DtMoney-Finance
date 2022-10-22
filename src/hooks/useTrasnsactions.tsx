@@ -1,5 +1,5 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
-import { api } from "./services/api";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { api } from "../services/api";
 
 interface TransactionProps {
   id: number;
@@ -13,7 +13,7 @@ interface TransactionsProviderProps {
   children: ReactNode;
 }
 interface TransactionsDataProps{
-  transaction: TransactionProps[]
+  transactions: TransactionProps[]
   createTransaction: (transaction: TransactionInputProps) =>Promise<void>
 }
 
@@ -23,17 +23,17 @@ APENAS AS TIPAGENS QUE VC QUER */
 
 type TransactionInputProps = Omit<TransactionProps, "id" | "createdAt">;
 
-export const TransactionsContext = createContext<TransactionsDataProps>(
+const TransactionsContext = createContext<TransactionsDataProps>(
   {} as TransactionsDataProps);
 
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
-  const [transaction, setTransaction] = useState<TransactionProps[]>([]);
+  const [transactions, setTransactions] = useState<TransactionProps[]>([]);
 
   useEffect(() => {
     api
       .get("transactions")
       /* cuidado para nao pegar apenas o objeto, pegar os valores desse objeto*/
-      .then((response) => setTransaction(response.data.transactions));
+      .then((response) => setTransactions(response.data.transactions));
   }, []);
 
   async function createTransaction(transactionInput:TransactionInputProps) {
@@ -42,12 +42,18 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
       createdAt:new Date()});
       
     const {transaction} = response.data
-    setTransaction({...transaction, transaction})
+
+    setTransactions([...transactions, transaction])
   }
 
   return (
-    <TransactionsContext.Provider value={{transaction, createTransaction}}>
+    <TransactionsContext.Provider value={{transactions, createTransaction}}>
       {children}
     </TransactionsContext.Provider>
   );
+}
+
+export function useTransactions(){
+  const context = useContext(TransactionsContext)
+  return context
 }

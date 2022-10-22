@@ -34,7 +34,7 @@ export const Container = styled.main`
       &.deposity{
         color: var(--green);
       }
-      &.withdrawal{
+      &.withdraw{
         color: var(--red);
       }
     }

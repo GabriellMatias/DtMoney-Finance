@@ -3,9 +3,9 @@ import { ButtonContainer, Container, TransactionTypeContainer } from "./style";
 import closeImg from "../../assets/Close.svg";
 import incomeImg from "../../assets/Entradas.svg";
 import outcomeImg from "../../assets/Saidas.svg";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { TransactionsContext } from "../../TrasnsactionContext";
+import { useTransactions } from "../../hooks/useTrasnsactions";
 
 interface ModalProps {
   isNewTransactionModalOpen: boolean;
@@ -15,7 +15,7 @@ interface InputsProps {
   title: string;
   category: string;
   value: number;
-  type: string
+  type: string;
 }
 
 Modal.setAppElement("#root");
@@ -27,18 +27,22 @@ export function NewTransactionModal({
   /*UTILIZAR REACT-HOOK-FORMS*/
   //const newTransaction = useForm<InputsProps>({});
   const { register, handleSubmit, reset } = useForm<InputsProps>();
-  const [type, setType] = useState("");
-  const { createTransaction } = useContext(TransactionsContext);
+  const [typeTransaction, setTypeTransaction] = useState("");
+
+  /*usando hook criado*/
+  const { createTransaction } = useTransactions();
 
   async function handleCreateNewTransaction(data: InputsProps) {
+    /* coloca o await pq pra fechar o modal apenas quando for adicionado a nova
+    transacao*/
     await createTransaction({
       title: data.title,
       amount: data.value,
       category: data.category,
-      type :data.type
+      type: typeTransaction,
     });
     reset();
-    onCloseNewTransactionModal()
+    onCloseNewTransactionModal();
   }
 
   return (
@@ -66,9 +70,9 @@ export function NewTransactionModal({
           <ButtonContainer
             type="button"
             onClick={() => {
-              setType("deposity");
+              setTypeTransaction("deposity");
             }}
-            isActive={type === "deposity"}
+            isActive={typeTransaction === "deposity"}
             activeColor="green"
           >
             <img src={incomeImg} alt="" />
@@ -78,9 +82,9 @@ export function NewTransactionModal({
           <ButtonContainer
             type="button"
             onClick={() => {
-              setType("withdraw");
+              setTypeTransaction("withdraw");
             }}
-            isActive={type === "withdraw"}
+            isActive={typeTransaction === "withdraw"}
             activeColor="red"
           >
             <img src={outcomeImg} alt="" />

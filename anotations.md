@@ -31,3 +31,6 @@
   >Cria o contexto = createContext(PASSA O VALOR INICIAL)[arq separado criando  UMA CONST e joga esse componente ao redor dos componentes filhos que irao receber o contexto]
   >nao esquecer do Provider -> recebe um value OBRIGATORIO
   >
+
+# Criando Hooks
+  >
