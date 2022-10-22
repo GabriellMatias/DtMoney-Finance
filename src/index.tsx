@@ -12,18 +12,18 @@ createServer({
     server.db.loadData({
       transactions:[{
         id: 1, 
-        title: 'Testando API',
+        title: 'PayCheck',
         type: 'deposity',
-        category: 'developer',
+        category: 'Developer',
         amount: 5000,
         createdAt: new Date('2021-02-15 09:00:00'),
       },
       {
         id: 2, 
-        title: 'Frereelancers',
+        title: 'Card bills',
         type: 'withdraw',
-        category: 'Tools',
-        amount: 100,
+        category: 'Bills',
+        amount: 500,
         createdAt: new Date('2025-02-18 11:59:00'),
       }]
     })

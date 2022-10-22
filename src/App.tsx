@@ -6,8 +6,6 @@ import { TransactionsProvider } from "./hooks/useTrasnsactions";
 import { GlobalStyle } from "./styles/GlobalStyle";
 
 
-
-
 export function App() {
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
   
