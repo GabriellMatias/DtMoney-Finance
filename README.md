@@ -20,9 +20,10 @@ An application about personal finance control. Allowing the user to add or withd
 
 ## :camera: ScreenShots
 <h1 aling="center">
-  <img style="margin-top:10px;" src="https://user-images.githubusercontent.com/80908772/197339068-a32ba8df-937e-4c80-a6fa-3c85b959580f.png"/>
+  
   <img style="margin-top:100px;" src="https://user-images.githubusercontent.com/80908772/197339070-07999e0d-e1c9-4103-840f-605a2cc64d5c.png"/>
   <img style="margin-top:10px;" src="https://user-images.githubusercontent.com/80908772/197339071-06ef8ffb-ea3e-47ef-a4a5-1b82eb61e04a.png"/>
+  <img style="margin-top:10px;" src="https://user-images.githubusercontent.com/80908772/197339068-a32ba8df-937e-4c80-a6fa-3c85b959580f.png"/>
 </h1>
 <br/>
 <a href='#top'>
