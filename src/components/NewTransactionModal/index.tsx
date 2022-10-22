@@ -64,7 +64,13 @@ export function NewTransactionModal({
         <h2>New Transaction</h2>
 
         <input type="text" placeholder="Titulo" {...register("title")} />
-        <input type="number" placeholder="Valor" {...register("value")} />
+        <input
+          type="number"
+          placeholder="Valor"
+          {...register("value", {
+            valueAsNumber: true,
+          })}
+        />
 
         <TransactionTypeContainer>
           <ButtonContainer

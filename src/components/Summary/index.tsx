@@ -7,6 +7,7 @@ import { useTransactions } from "../../hooks/useTrasnsactions";
 export function Summary() {
 
   const { transactions } = useTransactions();
+  console.log(transactions)
 
   const summary = transactions.reduce(
     (acc, transaction) => {
@@ -17,10 +18,14 @@ export function Summary() {
         acc.withdraw += transaction.amount
         acc.total -= transaction.amount
       }
+     
       return acc
 
     },
-    { deposits: 0, withdraw: 0, total: 0 }
+    { 
+      deposits: 0,
+      withdraw: 0,
+      total: 0 }
   );
 
   return (
