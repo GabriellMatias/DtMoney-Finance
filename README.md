@@ -1,7 +1,15 @@
-<h1 align="center"> 
-  <img width="150px" src="https://user-images.githubusercontent.com/80908772/194680070-87fbc668-aee7-40d4-98d9-64ba84bf08c5.png"/>
-</h1>
-<br/>
+<br />
+<div align="center">
+  <img style="margin-top:100px;" src="https://user-images.githubusercontent.com/80908772/231209576-c4bdff85-9225-4404-83d0-f6959885a89b.png"/>
+
+  <h3 align="center">Dt Money Finance</h3>
+
+  <p align="center">
+    A project developer during React curse Provider by Rocketseat
+    <br />
+  </p>
+</div>
+
 
 ## 💻 Owerview
 An application developed during Module 02 of the 2021 track of the react course provided by rocketseat.<br/>
